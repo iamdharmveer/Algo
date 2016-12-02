@@ -11,14 +11,13 @@ public class Dine{
 		for(int i=0; i< chopistics.length; i++){
 			chopistics[i] = new Chopstick("C: "+i);
 		}
+		
 		Philosopher[] philosophers = new Philosopher[5];
-		//for(i=0; i<philosophers.length; i++){
-		philosophers[0] = new Philosopher("P: 0 - ", chopistics[0], chopistics[1]);
-		philosophers[1] = new Philosopher("P: 1 - ", chopistics[1], chopistics[2]);
-		philosophers[2] = new Philosopher("P: 2 - ", chopistics[2], chopistics[3]);
-		philosophers[3] = new Philosopher("P: 3 - ", chopistics[3], chopistics[4]);
-		philosophers[4] = new Philosopher("P: 4 - ", chopistics[4], chopistics[0]);
-
+		for(int i=0; i<philosophers.length; i++){
+			String _name ="P: " + String.valueOf(i) + " - ";
+			philosophers[i] =new Philosopher(_name, chopistics[i%5], chopistics[(i+1)%5]);
+		}	
+		
 		for(int i=0;i<philosophers.length;i++){
 			Log.msg("Thred "+ i);
 			Thread t= new Thread( philosophers[i]);
